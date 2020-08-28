@@ -149,5 +149,22 @@
 				
 			});
 		</script>
+		<script src="js/vue.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data () {
+					return {
+						info: null
+					}
+				},
+				mounted (goods_id) {
+					axios
+					.get('http://api.1910.com/home/goodsproduct')
+					.then(response => (this.info = response.data.data.goods))
+				}
+			})
+		</script>
 	</body>
 </html>

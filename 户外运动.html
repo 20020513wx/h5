@@ -16,48 +16,37 @@
 			<a href="#" class="sousuo">搜索</a>
 		</div>
 		<div class="hwyd-content">
-			<ul>
-				<a href="产品详情.html">
+			<ul id="app">
+				<a :href="'产品详情.html?id='+app.goods_id" v-for="app in info">
 					<li>
 						<div class="hwyd-wai">
 							<img src="img/sytu8.png"/>
 							<div class="hwxinxi">
-								<p>S-易路达超轻折叠双肩包</p>
-								<span>0金币+￥125</span>
+								<p>{{ app.goods_name }}</p>
+								<span>￥{{ app.shop_price }}</span>
 							</div>
 						</div>
 					</li>
 				</a>
-				<li>
-					<div class="hwyd-wai">
-						<img src="img/sytu6.png"/>
-						<div class="hwxinxi">
-							<p>羽毛球豪华套装</p>
-							<span>0金币+￥125</span>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="hwyd-wai">
-						<img src="img/sytu8.png"/>
-						<div class="hwxinxi">
-							<p>S-易路达超轻折叠双肩包</p>
-							<span>0金币+￥125</span>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="hwyd-wai">
-						<img src="img/sytu6.png"/>
-						<div class="hwxinxi">
-							<p>羽毛球豪华套装</p>
-							<span>0金币+￥125</span>
-						</div>
-					</div>
-				</li>
 			</ul>
 		</div>
 		<div style="height: 5em;"></div>
-		
+		<script src="js/vue.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script>
+			new Vue({
+				el: '#app',
+				data () {
+					return {
+						info: null
+					}
+				},
+				mounted () {
+					axios
+					.get('http://api.1910.com/home/goods')
+					.then(response => (this.info = response.data.data.goods))
+				}
+			})
+		</script>
 	</body>
 </html>

@@ -14,21 +14,33 @@
 			</div>
 			<div class="login-nr">
 				<div class="login-nr-inp">
-					<input type="text" name="" id="" value="" placeholder="请输入用户名/手机号" />
+					<input type="text" name="user_name" id="user_name" value="" placeholder="请输入用户名" />
 				</div>
 				<div class="login-nr-inp">
-					<input type="text" name="" id="" value="" placeholder="请输入登录密码" />
-				</div>
-				<div class="login-nr-inp">
-					<input type="text" name="" id="" value="" placeholder="请输入验证码" />
-					<p class="yzm">1258</p>
+					<input type="text" name="password" id="password" value="" placeholder="请输入登录密码" />
 				</div>
 				<div class="wjmm"><a href="忘记密码.html">忘记密码</a></div>
 			</div>
 		</div>
 		<div class="login-nr-dl">
-			<input type="button" name="" id="" value="登录"  />
+			<input type="button" name="" id="login" value="登录"  />
 		</div>
 		<div style="height: 4em;"></div>
 	</body>
 </html>
+<script src="/js/jquery-1.12.3.js"></script>
+<script>
+	$("#login").on("click",function(){
+		var user_name=$("#user_name").val();
+		var password=$("#password").val();
+		$.ajax({
+			url:"http://api2.1910.com/users/login",
+			data:{user_name:user_name,password:password},
+			type:"post",
+			dataType:"json",
+			success:function(d){
+				console.log(d)
+			}
+		})
+	})
+</script>
